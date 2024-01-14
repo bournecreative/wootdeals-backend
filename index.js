@@ -4,11 +4,11 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
-const port = 8000;
+// app.use(cors());
+const PORT = process.env.PORT || 3000;
 
 // pages are parameters that are numbers. If you do not pass a page you get everything. Each page contains 100 deals
-app.get("/", cors(), (_, res) => {
+app.get("/", (_, res) => {
   const options = {
     method: "GET",
     url: "https://developer.woot.com/feed/Home",
@@ -29,6 +29,6 @@ app.get("/", cors(), (_, res) => {
     });
 });
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
