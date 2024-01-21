@@ -4,7 +4,7 @@
   "description": "backend for woot deals app",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon --watch --exec ./index.js"
+    "server": "nodemon --watch --exec ./src/index.js"
   },
   "author": "",
   "license": "ISC",

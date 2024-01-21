@@ -1,17 +1,13 @@
 const express = require("express");
 const axios = require("axios");
-const cors = require("cors");
 require("dotenv").config();
 
-const app = express();
-// app.use(cors());
-const PORT = process.env.PORT || 3000;
+const router = express.Router();
 
-// pages are parameters that are numbers. If you do not pass a page you get everything. Each page contains 100 deals
-app.get("/", (_, res) => {
+router.get("/", (_, res) => {
   const options = {
-    method: "GET",
     url: "https://developer.woot.com/feed/Home",
+    method: "GET",
     headers: {
       "x-api-key": `${process.env.VITE_AUTHKEY}`,
       "content-type": "application/json",
@@ -25,10 +21,8 @@ app.get("/", (_, res) => {
       res.json(payload);
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error, error.response);
     });
 });
 
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
-});
+module.exports = router;
